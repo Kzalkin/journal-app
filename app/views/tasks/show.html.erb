@@ -1,0 +1,24 @@
+<div class="task-show">
+    <p id="notice"><%= notice %></p>
+    <p id="alert"><%= alert %></p>
+<p>
+  <strong>Title</strong>
+  <%= @task.title %>
+</p>
+<p>
+  <strong>Body</strong>
+  <%= @task.body %>
+</p>
+<p>
+  <strong>Date</strong>
+  <%= @task.date %>
+</p>
+<div class="links">
+<%= link_to "Back", @category %>
+<%= link_to "Edit", edit_category_task_path(@category, @task) %>
+<%= link_to "Delete", category_task_path(@category, @task), method: :delete %>
+</div>
+<% content_for :sidebar do %>
+  <% render 'layouts/sidebar', categories: @categories %>
+<% end %>
+</div>

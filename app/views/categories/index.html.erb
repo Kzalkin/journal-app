@@ -1,0 +1,11 @@
+<div class="categories-index">
+    <p id="notice"><%= notice %></p>
+    <p id="alert"><%= alert %></p>
+  <h1>Tasks today</h1>
+
+<%= render 'layouts/tasks' %>
+
+</div>
+<% content_for :sidebar do %>
+  <% render 'layouts/sidebar', categories: @categories %>
+<% end %>

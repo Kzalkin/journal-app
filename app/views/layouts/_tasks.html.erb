@@ -1,0 +1,17 @@
+<ul class="task-list">
+  <% @tasks.each do |task| %>
+    <% if task.date == Date.current %>
+      <li>
+        <%= check_box_tag "task" %>
+        <span>
+        <%= link_to category_task_path( task.category.id, task.id )  do %>
+          <%= task.title %>
+        <% end %>
+        <%= link_to category_path( task.category.id )  do %>
+          <%= task.category.title %>
+        <% end %>
+        </span>
+      </li>
+    <% end %>
+  <% end %>
+</ul>

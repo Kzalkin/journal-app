@@ -1,0 +1,17 @@
+<%= form_with model: task, url: url do |form| %>
+  <div class="field">
+    <%= form.label :title %>
+    <%= form.text_field :title %>
+  </div>
+  <div class="field">
+    <%= form.label :body %>
+    <%= form.text_field :body %>
+  </div>
+  <div class="field">
+    <%= form.label :date %>
+    <%= form.date_select :date %>
+  </div>
+  <div class="action">
+    <%= form.submit %>
+  </div>
+<% end %>

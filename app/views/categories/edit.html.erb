@@ -1,0 +1,12 @@
+<div class="category-edit">
+<h1>Editing Category</h1>
+
+<%= render 'form', category: @category %>
+
+<%= link_to 'Back', @category %> |
+<%= link_to 'Delete', @category, method: :delete %>
+
+</div>
+<% content_for :sidebar do %>
+  <% render 'layouts/sidebar', categories: @categories %>
+<% end %>

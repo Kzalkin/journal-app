@@ -1,0 +1,43 @@
+<div class="sidebar-main">
+<div class="links">
+<%= link_to "Today", categories_path %> |
+<%= link_to "Upcoming", "#" %> |
+<%= link_to "Delayed", "#" %>
+</div>
+<h2>To-do list</h2>
+<div class="todo-list">
+<% categories.each do |category| %>
+<div class="todo">
+  <span>
+  <div class="category-title">
+  <label for="checkbox"><%= image_tag("Caret_down.png") %></label>
+    <%= link_to category do %>
+      <%= category.title %>
+    <% end %>
+    </div>
+    <%= link_to category_path(category), method: :delete, data: {confirm: "Are you sure?"} do %>
+      <i class="fa-solid fa-trash"></i>
+    <% end %>
+  </span>
+  <ul>
+    <% category.tasks.each do |task| %>
+      <li>
+        <%= link_to category_task_path(category.id, task.id) do %>
+          <%= task.title %>
+        <% end %>
+      </li>
+    <% end %>
+  </ul>
+  <%= link_to "New Task", new_category_task_path(category) %>
+</div>
+<% end %>
+</div>
+</div>
+<%= form_with model: categories.build do |form| %>
+  <div class="field">
+    <%= form.text_field :title, placeholder: "Category title" %>
+  </div>
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

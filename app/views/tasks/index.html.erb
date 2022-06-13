@@ -1,0 +1,24 @@
+<div class="tasks-index">
+    <p id="notice"><%= notice %></p>
+    <p id="alert"><%= alert %></p>
+<ul class="task-list">
+  <% @tasks.each do |task| %>
+      <li>
+        <%= check_box_tag "task" %>
+        <span>
+        <%= link_to category_task_path( task.category.id, task.id )  do %>
+          <%= task.title %>
+        <% end %>
+        <%= link_to category_path( task.category.id )  do %>
+          <%= task.category.title %>
+        <% end %>
+        </span>
+      </li>
+    <% end %>
+</ul>
+
+<%= link_to "Back", @category %>
+</div>
+<% content_for :sidebar do %>
+  <% render 'layouts/sidebar', categories: @categories %>
+<% end %>

@@ -1,0 +1,11 @@
+<div class="task-edit">
+<h1>Update Task</h1>
+
+<%= render 'form', task: @task, url: category_task_path %>
+<br>
+<%= link_to 'Back', category_path %>
+<%= link_to 'Delete', category_task_path(@category, @task), method: :delete %>
+</div>
+<% content_for :sidebar do %>
+  <% render 'layouts/sidebar', categories: @categories %>
+<% end %>
