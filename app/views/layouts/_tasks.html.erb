@@ -1,17 +1,24 @@
-<ul class="task-list">
-  <% @tasks.each do |task| %>
-    <% if task.date == Date.current %>
-      <li>
-        <%= check_box_tag "task" %>
-        <span>
-        <%= link_to category_task_path( task.category.id, task.id )  do %>
-          <%= task.title %>
-        <% end %>
-        <%= link_to category_path( task.category.id )  do %>
-          <%= task.category.title %>
-        <% end %>
-        </span>
-      </li>
-    <% end %>
+<h1>Today</h1>
+<div class="tasks">
+  <% if today.any? %>
+    <%= render 'layouts/task', tasks: today%>
+  <% else %>
+    <span>No Tasks</span>
   <% end %>
-</ul>
+</div>
+<h1>Upcoming</h1>
+<div class="tasks">
+  <% if upcoming.any? %>
+    <%= render 'layouts/task', tasks: upcoming %>
+  <% else %>
+    <span>No Tasks</span>
+  <% end %>
+</div>
+<h1>Delayed</h1>
+<div class="tasks">
+  <% if delayed.any? %>
+    <%= render 'layouts/task', tasks: delayed %>
+  <% else %>
+    <span>No Tasks</span>
+  <% end %>
+</div>

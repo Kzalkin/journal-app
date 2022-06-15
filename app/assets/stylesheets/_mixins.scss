@@ -1,0 +1,75 @@
+@mixin tasks-format {
+    & > span {
+        display: flex;
+        align-items: center;
+        background-color: darkcyan;
+        color: white;
+        border-radius: 10px;
+        padding: 15px;
+        margin: 20px 0;
+        font-size: 1.5rem;
+        justify-content: center;
+    }
+
+    .task {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        background-color: darkcyan;
+        color: white;
+        border-radius: 10px;
+        padding: 15px;
+        margin: 20px 0;
+        font-size: 1.5rem;
+
+        
+        
+        .task-title {
+            display: flex;
+
+            form {
+                display: flex;
+                align-items: center;
+                input[type="checkbox"] {
+                    width: 20px;
+                    height: 20px;
+                }
+            }
+
+            a {
+                padding: 0 10px;
+                text-decoration: none;
+                color: white;
+                text-transform: capitalize;
+            }
+
+            .task-category {
+                padding: 5px 10px;
+                display: flex;
+                align-items: center;
+                font-size: 0.8rem;
+                border-radius: 10px;
+                background-color:cadetblue;
+                color: white;
+            }
+
+        }
+
+        .task-data {
+            width: 58%;
+            display: flex;
+            justify-content: space-between;
+            .task-links {
+                a {
+                    padding-left: 10px;
+                    text-decoration: none;
+                    color: white;
+                }
+            }
+        }
+    }
+}
+
+.completed {
+    text-decoration: line-through !important;
+}

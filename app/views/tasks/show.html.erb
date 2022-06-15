@@ -1,24 +1,38 @@
 <div class="task-show">
-    <p id="notice"><%= notice %></p>
-    <p id="alert"><%= alert %></p>
-<p>
-  <strong>Title</strong>
-  <%= @task.title %>
-</p>
-<p>
-  <strong>Body</strong>
-  <%= @task.body %>
-</p>
-<p>
-  <strong>Date</strong>
-  <%= @task.date %>
-</p>
-<div class="links">
-<%= link_to "Back", @category %>
-<%= link_to "Edit", edit_category_task_path(@category, @task) %>
-<%= link_to "Delete", category_task_path(@category, @task), method: :delete %>
+  <%= render 'layouts/error' %>
+  <span class="task-title">
+    <%= @task.category.title.capitalize %> > <%= @task.title.capitalize %>
+    <div class="links">
+      <%= link_to @category do %>
+        <i class="fa-solid fa-arrow-left"></i>
+      <% end %>
+      <% if !@task.completed? %>
+      <%= link_to edit_category_task_path(@category, @task) do %>
+        <i class="fa-solid fa-pen-to-square"></i>
+      <% end %>
+      <% end %>
+      <%= link_to category_task_path(@category, @task), method: :delete do %>
+        <i class="fa-solid fa-trash"></i>
+      <% end %>
+    </div>
+  </span>
+  <span class="task-date">
+    <i class="fa-solid fa-calendar-day"></i>
+    <%= @task.date.strftime("%b %d, %Y") %>
+  </span>
+  <span class="task-body">
+    <strong>Notes</strong>
+    <p><%= @task.body %></p>
+  </span>
+  <%= form_with model: @task, url: category_task_path(@task.category, @task) do |f| %>
+    <%= f.check_box :completed, onchange: "this.form.submit()" %>
+    <% if @task.completed? %>
+      <%= f.label :completed, class: "task-completed", for: "task_completed"%>
+    <% else %>
+      <%= f.label :incomplete, class: "task-incomplete", for: "task_completed"%>
+    <% end %>
+  <% end %>
 </div>
 <% content_for :sidebar do %>
   <% render 'layouts/sidebar', categories: @categories %>
 <% end %>
-</div>

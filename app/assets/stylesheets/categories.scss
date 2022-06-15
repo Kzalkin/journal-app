@@ -1,21 +1,25 @@
 // Place all the styles related to the Categories controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: https://sass-lang.com/
+@import 'mixins';
+
 .categories-index{
     width: 100%;
     height: 100%;
     display: flex;
     flex-direction: column;
-    align-items: center;
-    justify-content: center;
+    padding: 50px;
 
-    .task-list {
-        list-style-type: none;
-        li {
-            input[type=checkbox]:checked + span {
-                text-decoration: line-through;
-            }
+    .tasks {
+
+        & > span {
+            display: flex;
+            width: 100%;
+            align-items: center;
+            font-size: 1.5rem;
+            justify-content: center;
         }
+        @include tasks-format
     }
 }
 
@@ -24,15 +28,116 @@
     height: 100%;
     display: flex;
     flex-direction: column;
-    justify-content: center;
-    align-items: center;
+    padding: 50px;
+
+    .category-title {
+        display: flex;
+        align-items: center;
+        // justify-content: center;
+        h1 {
+            padding-right: 20px;
+            text-transform: capitalize;
+        }
+
+        .links {
+            display: flex;
+            align-items: center;
+            a {
+                font-size: 1.5rem;
+                padding-right: 10px;
+                text-decoration: none;
+                color: black;
+            }
+    
+            .new-task {
+                padding: 5px 10px;
+                color: white;
+                border-radius: 10px;
+                font-size: 0.8rem;
+                background-color: green;
+            }
+        }
+
+    }
+
+    
+    .tasks {
+        @include tasks-format
+    }
+
 }
 
 .category-edit {
-    width: 100%;
+   width: 100%;
     height: 100%;
     display: flex;
-    flex-direction: column;
-    justify-content: center;
     align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    padding: 100px;
+
+    .category-title {
+        width: 80%;
+        display: flex;
+        justify-content: flex-start;
+        align-items: center;
+
+        .links {
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            a {
+                padding-left: 10px;
+                font-size: 1.5rem;
+                text-decoration: none;
+                color: black;
+            }
+        }
+    }
+    
+    form {
+        width: 80%;
+        display: flex;
+        align-items: center;
+        flex-direction: column;
+        
+        .field {
+            display: flex;
+            justify-content: center;
+            width: 100%;
+            padding: 20px 0;
+            
+            input {
+                width: 100%;
+                height: 60px;
+                padding-left: 15px;
+                border-radius: 8px;
+                outline: none;
+                border: none;
+                background-color: rgba(95, 158, 160, 0.263);
+                font-size: 1.2rem;
+                
+                &::placeholder {
+                    color: rgba(0, 100, 0, 0.731);
+                    font-weight: 900;
+                }
+            }
+        }
+        
+        .actions {
+            width: 100%;
+            input {
+                margin: 20px 0;
+                width: 100%;
+                padding: 15px;
+                border-radius: 8px;
+                outline: none;
+                border: none;
+                background-color: cadetblue;
+                font-size: 1.2rem;
+                color: white;
+            }
+        }
+    }
 }

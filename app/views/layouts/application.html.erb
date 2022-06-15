@@ -1,35 +1,39 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>JournalApp</title>
+    <title>Opus</title>
     <script src="https://kit.fontawesome.com/5950edb350.js" crossorigin="anonymous"></script>
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
-
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <%= favicon_link_tag 'opus.png' %>
   </head>
-
   <body>
-  <% if user_signed_in? %>
-    <nav>
-    <%= link_to "Journal App", categories_path %>
-    <div>
-      <span>Welcome <%= current_user.email %>!</span>
-      <%= link_to destroy_user_session_path, method: :delete do %>
-        <i class="fa-solid fa-right-from-bracket"></i>
+    <% if user_signed_in? %>
+      <nav>
+        <div class="logo">
+          <%= link_to categories_path do %>
+            <i class="fa-brands fa-opera"></i>
+            <span>Opus</span>
+          <% end %>
+        </div>
+        <div class="greeting">
+          <span>Welcome <%= current_user.email %>!</span>
+          <%= link_to destroy_user_session_path, method: :delete do %>
+            <i class="fa-solid fa-right-from-bracket"></i>
+          <% end %>
+        </div>
+      </nav>
+    <% end %>
+    <div class="main">
+      <% if user_signed_in? %>
+        <div class="sidebar">
+          <%= yield :sidebar %>
+        </div>
       <% end %>
+      <%= yield %>
     </div>
-    </nav>
-  <% end %>
-  <div class="main">
-  <% if user_signed_in? %>
-  <div class="sidebar">
-    <%= yield :sidebar %>
-  </div>
-  <% end %>
-    <%= yield %>
-  </div>
   </body>
 </html>

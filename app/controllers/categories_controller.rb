@@ -1,15 +1,18 @@
 class CategoriesController < ApplicationController
   before_action :set_category, only: %i[ show edit update destroy ]
-  before_action :set_categories, only: %i[index show edit]
+  before_action :set_categories, only: %i[index show edit new upcoming delayed]
   before_action :authenticate_user!
 
   # GET /categories or /categories.json
   def index
-    @tasks = current_user.tasks
+    @tasks = current_user.tasks.where('date = ?', Date.current)
   end
 
   # GET /categories/1 or /categories/1.json
   def show
+    @tasks = @category.tasks.where('date = ?', Date.current)
+    @upcoming_tasks = @category.tasks.where('date > ?', Date.current)
+    @delayed_tasks = @category.tasks.where('date < ?', Date.current)
   end
 
   # GET /categories/new
@@ -24,40 +27,35 @@ class CategoriesController < ApplicationController
   # POST /categories or /categories.json
   def create
     @category = current_user.categories.build(category_params)
-
-    respond_to do |format|
       if @category.save
-        format.html { redirect_to category_url(@category), notice: "Category was successfully created." }
-        format.json { render :show, status: :created, location: @category }
+          redirect_to category_url(@category), notice: "Category was successfully created." 
       else
-        format.html { render :new, status: :unprocessable_entity }
-        format.json { render json: @category.errors, status: :unprocessable_entity }
+          redirect_to categories_path, notice: "#{@category.errors.full_messages[0]}" 
       end
-    end
   end
 
   # PATCH/PUT /categories/1 or /categories/1.json
   def update
-    respond_to do |format|
       if @category.update(category_params)
-        format.html { redirect_to category_url(@category), notice: "Category was successfully updated." }
-        format.json { render :show, status: :ok, location: @category }
+          redirect_to category_url(@category), notice: "Category was successfully updated."
       else
-        format.html { render :edit, status: :unprocessable_entity }
-        format.json { render json: @category.errors, status: :unprocessable_entity }
+          render :edit
       end
-    end
   end
 
   # DELETE /categories/1 or /categories/1.json
   def destroy
     @category.tasks.destroy_all
     @category.destroy
+    redirect_to categories_url, notice: "Category was successfully destroyed."
+  end
 
-    respond_to do |format|
-      format.html { redirect_to categories_url, notice: "Category was successfully destroyed." }
-      format.json { head :no_content }
-    end
+  def upcoming
+    @tasks = current_user.tasks.where('date > ?', Date.current)
+  end
+  
+  def delayed
+    @tasks = current_user.tasks.where('date < ?', Date.current)
   end
 
   private

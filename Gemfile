@@ -61,3 +61,4 @@ gem 'net-pop', require: false
 gem 'devise'
 gem 'guard-livereload'
 gem 'rack-livereload'
+gem 'jquery-rails'

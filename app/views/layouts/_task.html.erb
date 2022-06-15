@@ -1,0 +1,33 @@
+<% tasks.each do |task| %>
+  <div class="task">
+    <div class="task-title">
+      <%= form_with model: task, url: category_task_path(task.category, task) do |f| %>
+        <%= f.check_box :completed, onchange: "this.form.submit()" %>
+      <% end %>
+      <%= link_to category_task_path( task.category, task ), class: task.completed? ? "completed" : "" do %>
+        <%= task.title %>
+      <% end %>
+      <% if action_name == 'index' || action_name == 'upcoming' || action_name == 'delayed' %>
+        <%= link_to category_path(task.category), class: "task-category" do %>
+        <%= task.category.title%>
+        <% end %>
+      <% end %>
+    </div>
+    <div class="task-data">
+      <div class="<%= task.completed? ? "task-date completed" : "task-date" %>">
+        <i class="<%= task.completed? ? "fa-solid fa-calendar-day completed" : "fa-solid fa-calendar-day" %>"></i>
+        <span><%= task.date.strftime("%b %d, %Y") %></span>
+      </div>
+      <div class="task-links">
+      <% if !task.completed? %>
+        <%= link_to edit_category_task_path( task.category, task ) do %>
+          <i class="fa-solid fa-pen-to-square"></i>
+        <% end %>
+        <% end %>
+        <%= link_to category_task_path(task.category, task), method: :delete do %>
+          <i class="fa-solid fa-trash"></i>
+        <% end %>
+      </div>
+    </div>
+  </div>
+<% end %>

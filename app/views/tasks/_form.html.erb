@@ -1,14 +1,11 @@
 <%= form_with model: task, url: url do |form| %>
   <div class="field">
-    <%= form.label :title %>
-    <%= form.text_field :title %>
+    <%= form.text_field :title, placeholder: "Task Title" %>
   </div>
   <div class="field">
-    <%= form.label :body %>
-    <%= form.text_field :body %>
+    <%= form.text_area :body, placeholder: "Task Body" %>
   </div>
   <div class="field">
-    <%= form.label :date %>
     <%= form.date_select :date %>
   </div>
   <div class="action">

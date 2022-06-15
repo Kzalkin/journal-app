@@ -1,37 +1,43 @@
 <div class="sidebar-main">
-<div class="links">
-<%= link_to "Today", categories_path %> |
-<%= link_to "Upcoming", "#" %> |
-<%= link_to "Delayed", "#" %>
-</div>
-<h2>To-do list</h2>
-<div class="todo-list">
-<% categories.each do |category| %>
-<div class="todo">
-  <span>
-  <div class="category-title">
-  <label for="checkbox"><%= image_tag("Caret_down.png") %></label>
-    <%= link_to category do %>
-      <%= category.title %>
+  <div class="links">
+    <%= link_to "Today", categories_path %> |
+    <%= link_to "Upcoming", upcoming_tasks_path %> |
+    <%= link_to "Delayed", delayed_tasks_path %>
+  </div>
+  <h2>To-do list</h2>
+  <div class="todo-list">
+    <% @categories.each do |category| %>
+      <div class="todo">
+        <div>
+          <div class="category-title">
+            <%= link_to category do %>
+              <%= category.title %>
+            <% end %>
+          </div>
+          <span>
+            <% if category.tasks.any? %>
+              <%= pluralize(category.tasks.count, "Task") %>
+            <% else %>
+              No Task
+            <% end %>
+            <%= link_to category, method: :delete, data: {confirm: "Are you sure?"} do %>
+              <i class="fa-solid fa-trash"></i>
+            <% end %>
+          </span>
+        </div>
+        <ul>
+          <% category.tasks.each do |task| %>
+            <li>
+              <%= link_to category_task_path(category, task) do %>
+                <%= task.title %>
+              <% end %>
+            </li>
+          <% end %>
+        </ul>
+        <%= link_to "New Task", new_category_task_path(category) %>
+      </div>
     <% end %>
-    </div>
-    <%= link_to category_path(category), method: :delete, data: {confirm: "Are you sure?"} do %>
-      <i class="fa-solid fa-trash"></i>
-    <% end %>
-  </span>
-  <ul>
-    <% category.tasks.each do |task| %>
-      <li>
-        <%= link_to category_task_path(category.id, task.id) do %>
-          <%= task.title %>
-        <% end %>
-      </li>
-    <% end %>
-  </ul>
-  <%= link_to "New Task", new_category_task_path(category) %>
-</div>
-<% end %>
-</div>
+  </div>
 </div>
 <%= form_with model: categories.build do |form| %>
   <div class="field">
