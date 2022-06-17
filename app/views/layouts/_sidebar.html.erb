@@ -21,7 +21,7 @@
             <% else %>
               0 Task
             <% end %>
-            <%= link_to category, method: :delete, data: {confirm: "Are you sure?"} do %>
+            <%= link_to category, method: :delete, data: {confirm: "Are you sure?"}, class: "category-delete" do %>
               <i class="fa-solid fa-trash"></i>
             <% end %>
           </span>

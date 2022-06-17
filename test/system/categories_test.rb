@@ -2,42 +2,43 @@ require "application_system_test_case"
 
 class CategoriesTest < ApplicationSystemTestCase
   setup do
+    sign_in users(:one)
     @category = categories(:one)
-  end
-
-  test "visiting the index" do
-    visit categories_url
-    assert_selector "h1", text: "Categories"
+    visit categories_path
   end
 
   test "creating a Category" do
-    visit categories_url
-    click_on "New Category"
+    assert_text "Tasks Today"
 
-    fill_in "Title", with: @category.title
+    fill_in "Category title", with: "Test"
     click_on "Create Category"
 
-    assert_text "Category was successfully created"
-    click_on "Back"
+    assert_text "Test"
+  end
+
+  test "view a category details" do
+    click_on @category.title
+    assert_text "#{@category.title} Tasks"
   end
 
   test "updating a Category" do
-    visit categories_url
-    click_on "Edit", match: :first
+    click_on @category.title
+    assert_text "Today"
 
-    fill_in "Title", with: @category.title
+    click_on(class: "edit-category")
+    assert_text "Editing Category"
+
+    fill_in "New category title", with: "School"
     click_on "Update Category"
 
-    assert_text "Category was successfully updated"
-    click_on "Back"
+    assert_text "School"
   end
 
   test "destroying a Category" do
-    visit categories_url
+    assert_text "Tasks Today"
     page.accept_confirm do
-      click_on "Destroy", match: :first
+      first(".category-delete").click
     end
-
     assert_text "Category was successfully destroyed"
   end
 end

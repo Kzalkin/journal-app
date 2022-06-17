@@ -1,11 +1,7 @@
 # Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
-  title: MyString
-  body: MyText
+  title: Task Test
+  body: Task Body
   category: one
-
-two:
-  title: MyString
-  body: MyText
-  category: two
+  date: Fri, 17 Jun 2022

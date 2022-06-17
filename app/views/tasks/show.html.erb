@@ -7,11 +7,11 @@
         <i class="fa-solid fa-arrow-left"></i>
       <% end %>
       <% if !@task.completed? %>
-      <%= link_to edit_category_task_path(@category, @task) do %>
+      <%= link_to edit_category_task_path(@category, @task), class: "edit-task" do %>
         <i class="fa-solid fa-pen-to-square"></i>
       <% end %>
       <% end %>
-      <%= link_to category_task_path(@category, @task), method: :delete do %>
+      <%= link_to category_task_path(@category, @task), method: :delete, class: "delete-task" do %>
         <i class="fa-solid fa-trash"></i>
       <% end %>
     </div>

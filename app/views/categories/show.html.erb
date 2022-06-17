@@ -3,10 +3,10 @@
   <div class="category-title">
     <h1><%= @category.title %> Tasks </h1>
     <div class="links">
-      <%= link_to edit_category_path(@category) do %>
+      <%= link_to edit_category_path(@category), class: "edit-category" do %>
         <i class="fa-solid fa-pen-to-square"></i>
       <% end %>
-      <%= link_to category_path, method: :delete do %>
+      <%= link_to category_path, method: :delete, class: "category-delete" do %>
         <i class="fa-solid fa-trash"></i>
       <% end %>
       <%= link_to new_category_task_path(@category), class: "new-task" do %>
