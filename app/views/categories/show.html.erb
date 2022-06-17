@@ -17,7 +17,4 @@
   </div>
   <br>
  <%= render 'layouts/tasks', today: @tasks, upcoming: @upcoming_tasks, delayed: @delayed_tasks %>
-  <% content_for :sidebar do %>
-    <% render 'layouts/sidebar', categories: @categories %>
-  <% end %>
 </div>

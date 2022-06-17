@@ -30,7 +30,7 @@
     <div class="main">
       <% if user_signed_in? %>
         <div class="sidebar">
-          <%= yield :sidebar %>
+          <%= render 'layouts/sidebar' %>
         </div>
       <% end %>
       <%= yield %>

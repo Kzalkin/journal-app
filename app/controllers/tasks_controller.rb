@@ -1,7 +1,9 @@
 class TasksController < ApplicationController
     before_action :set_categories, only: %i[index show edit new]
-    before_action :set_category, only: %i[today new index create update]
+    before_action :set_category, only: %i[new index create update]
     before_action :set_task, only: %i[show edit destroy]
+    before_action :authenticate_user!
+
     def index
         @tasks = @category.tasks.where('date = ?', Date.current)
         @upcoming_task = @category.tasks.where('date > ?', Date.current)
@@ -36,9 +38,6 @@ class TasksController < ApplicationController
     def destroy
         @task.destroy
         redirect_to @category, notice: "Task Deleted"
-    end
-
-    def today
     end
 
   private

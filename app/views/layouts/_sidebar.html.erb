@@ -6,25 +6,27 @@
   </div>
   <h2>To-do list</h2>
   <div class="todo-list">
-    <% @categories.each do |category| %>
-      <div class="todo">
-        <div>
-          <div class="category-title">
+    <% current_user.categories.each do |category| %>
+      <details class="todo" <%= current_page?(id: category) ? "open" : "" %> <%= current_page?(category_id: category) ? "open" : "" %>>
+        <summary class="category-title">
+          <span>
+          <span>
             <%= link_to category do %>
               <%= category.title %>
             <% end %>
-          </div>
+          </span>
           <span>
             <% if category.tasks.any? %>
               <%= pluralize(category.tasks.count, "Task") %>
             <% else %>
-              No Task
+              0 Task
             <% end %>
             <%= link_to category, method: :delete, data: {confirm: "Are you sure?"} do %>
               <i class="fa-solid fa-trash"></i>
             <% end %>
           </span>
-        </div>
+          </span>
+        </summary>
         <ul>
           <% category.tasks.each do |task| %>
             <li>
@@ -35,11 +37,11 @@
           <% end %>
         </ul>
         <%= link_to "New Task", new_category_task_path(category) %>
-      </div>
+      </details>
     <% end %>
   </div>
 </div>
-<%= form_with model: categories.build do |form| %>
+<%= form_with model: current_user.categories.build do |form| %>
   <div class="field">
     <%= form.text_field :title, placeholder: "Category title" %>
   </div>

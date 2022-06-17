@@ -101,33 +101,38 @@ body {
                         width: 250px;
                         padding: 10px 0;
                         
-                        div {
-                            display: flex;
-                            align-items: center;
-                            justify-content: space-between;
-                            width: 100%;
-                            padding-right: 10px;
+                        summary {
 
-                            .category-title {
-
-                                a {
-                                    text-transform: capitalize;
-                                    font-size: 1.5rem;
-                                    text-decoration: none;
-                                    color: black;
-                                }
+                            &::marker {
+                                font-size: 1.2rem;
                             }
 
-                            span {
-                                display: flex;
-                                justify-content: space-evenly;
+                            & > span {
+                                display: inline-flex;
                                 align-items: center;
-                                width: 100%;
-                                a {
-                                    color: black;   
-                                    font-size: 0.8rem;                 
+                                justify-content: space-between;
+                                width: 90%;
+                                span {
+                                    a {
+                                        text-transform: capitalize;
+                                        font-size: 1.2rem;
+                                        text-decoration: none;
+                                        color: black;
+                                    }
+                                }
+    
+                                span:nth-last-child(1) {
+                                    display: flex;
+                                    justify-content: space-between;
+                                    font-size: 1rem;
+                                    align-items: center;
+                                    text-align: center;
+                                    a {
+                                        padding-left: 10px;
+                                    }
                                 }
                             }
+
                         }
             
                         ul {
