@@ -29,7 +29,7 @@ class TasksController < ApplicationController
         @task_item = @category.tasks.find(params[:id])
         @task = @task_item.update(task_params)
         if request.referrer.include? "edit"
-            redirect_to @category
+            redirect_to @category, notice: "Task Updated"
         else
             redirect_to request.referrer, notice: "Task Updated"
         end

@@ -30,7 +30,8 @@ class CategoriesController < ApplicationController
       if @category.save
           redirect_to category_url(@category), notice: "Category was successfully created." 
       else
-          redirect_to categories_path, notice: "#{@category.errors.full_messages[0]}" 
+          redirect_to categories_path
+          flash[:alert] = @category.errors.full_messages[0]
       end
   end
 

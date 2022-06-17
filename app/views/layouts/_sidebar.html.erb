@@ -41,6 +41,7 @@
     <% end %>
   </div>
 </div>
+
 <%= form_with model: current_user.categories.build do |form| %>
   <div class="field">
     <%= form.text_field :title, placeholder: "Category title" %>
