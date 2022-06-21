@@ -72,7 +72,7 @@ body {
         }
         
         .sidebar {
-            width: 360px;
+            width: 390px;
             height: 100%;
             background-color:aliceblue;
             padding: 25px;
@@ -96,6 +96,15 @@ body {
                 .todo-list {
                     height: 670px;
                     overflow: auto;
+                    padding: 10px;
+
+                    .no-task {
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+                        height: 100%;
+                        font-size: 1.5rem;
+                    }
 
                     .todo {
                         width: 250px;

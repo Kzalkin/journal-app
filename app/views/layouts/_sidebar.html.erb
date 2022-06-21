@@ -6,6 +6,7 @@
   </div>
   <h2>To-do list</h2>
   <div class="todo-list">
+    <% if current_user.categories.any? %>
     <% current_user.categories.each do |category| %>
       <details class="todo" <%= current_page?(id: category) ? "open" : "" %> <%= current_page?(category_id: category) ? "open" : "" %>>
         <summary class="category-title">
@@ -38,6 +39,9 @@
         </ul>
         <%= link_to "New Task", new_category_task_path(category) %>
       </details>
+    <% end %>
+    <% else %>
+    <span class="no-task" > No Tasks </span>
     <% end %>
   </div>
 </div>
