@@ -42,17 +42,6 @@
                 color: white;
                 text-transform: capitalize;
             }
-
-            .task-category {
-                padding: 5px 10px;
-                display: flex;
-                align-items: center;
-                font-size: 0.8rem;
-                border-radius: 10px;
-                background-color:cadetblue;
-                color: white;
-            }
-
         }
 
         .task-data {
@@ -65,6 +54,17 @@
                     text-decoration: none;
                     color: white;
                 }
+            }
+
+        .task-category {
+            padding: 3px 20px;
+            display: flex;
+            align-items: center;
+            font-size: 1rem;
+            border-radius: 10px;
+            background-color:cadetblue;
+            color: white;
+            text-decoration: none;
             }
         }
     }
