@@ -5,9 +5,9 @@ class TasksController < ApplicationController
     before_action :authenticate_user!
 
     def index
-        @tasks = @category.tasks.where('date = ?', Date.current)
-        @upcoming_task = @category.tasks.where('date > ?', Date.current)
-        @delayed_task = @category.tasks.where('date < ?', Date.current)
+        @tasks = @category.tasks.today
+        @upcoming_task = @category.tasks.upcoming
+        @delayed_task = @category.tasks.delayed
     end
 
     def show

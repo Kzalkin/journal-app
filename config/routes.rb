@@ -5,8 +5,12 @@ Rails.application.routes.draw do
   devise_for :users
   get "/categories/upcoming", to: "categories#upcoming", as: "upcoming_tasks"
   get "/categories/delayed", to: "categories#delayed", as: "delayed_tasks"
+
   resources :categories do
     resources :tasks
   end
+
+  get "/upcoming", to: "upcoming_tasks#index"
+  get "/delayed", to: "delayed_tasks#index"
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end

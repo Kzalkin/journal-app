@@ -5,14 +5,14 @@ class CategoriesController < ApplicationController
 
   # GET /categories or /categories.json
   def index
-    @tasks = current_user.tasks.where('date = ?', Date.current)
+    @tasks = current_user.tasks.today
   end
 
   # GET /categories/1 or /categories/1.json
   def show
-    @tasks = @category.tasks.where('date = ?', Date.current)
-    @upcoming_tasks = @category.tasks.where('date > ?', Date.current)
-    @delayed_tasks = @category.tasks.where('date < ?', Date.current)
+    @tasks = @category.tasks.today
+    @upcoming_tasks = @category.tasks.upcoming
+    @delayed_tasks = @category.tasks.delayed
   end
 
   # GET /categories/new
@@ -51,11 +51,11 @@ class CategoriesController < ApplicationController
   end
 
   def upcoming
-    @tasks = current_user.tasks.where('date > ?', Date.current)
+    @tasks = current_user.tasks.upcoming
   end
   
   def delayed
-    @tasks = current_user.tasks.where('date < ?', Date.current)
+    @tasks = current_user.tasks.delayed
   end
 
   private
