@@ -7,10 +7,6 @@
 >> - Utilized the Rails count method to display the quantity of tasks under a certain category.
 >> - Sorted tasks in accordance to its creation using Date object methods.
 
->> ###### **Sign in as admin**
->> - Email address: egiatrading@gmail.com
->> - Password: 1234567890
-
 ![Log In Page](app/assets/images/screenshots/signin.png)
 
 ![All Tasks Page](app/assets/images/screenshots/alltasks.png)
